@@ -1,0 +1,2 @@
+notebooks/model/model_smotenc-0.1.0 filter=lfs diff=lfs merge=lfs -text
+*.pkl filter=lfs diff=lfs merge=lfs -text
