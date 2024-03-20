@@ -1,7 +1,7 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.10
 
-COPY ./requirements.txt LANGUAGEDET/requirements.txt
+COPY ./requirements.txt /app/requirements.txt
 
-RUN pip install --no-cache-dir --upgrade -r LANGUAGEDET/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
-COPY ./notebooks /notebooks/app
+COPY ./app /app/app

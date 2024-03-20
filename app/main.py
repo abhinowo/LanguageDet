@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from model.model import predict, __version__ as model_version
+from app.model.model import predict, __version__ as model_version
 
 # Create an instance of the FastAPI app
 app = FastAPI()
