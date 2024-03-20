@@ -1,31 +1,28 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from notebooks.model.model import predict, __version__ as model_version
+from model.model import predict, __version__ as model_version
 
 # Create an instance of the FastAPI app
 app = FastAPI()
 
 # Define your model input schema
 class InputData(BaseModel):
-  text: str
+    text: str
 
 # Define your model output schema
 class OutputData(BaseModel):
-  prediction: str
+    prediction: str
 
+@app.get("/", response_model=dict)
+def model_info():
+    return {"model_version": model_version}
 
-@app.get("/model_info")
-def home():
-  return {"model_version": model_version}
-
-@app.get("/status")
+@app.get("/status", response_model=dict)
 def status():
-  return {"status": "OK"}
+    return {"status": "OK"}
 
 # Define your endpoint with the input and output schema
 @app.post("/predict", response_model=OutputData)
-def predict(payload: InputData):
+def predict_sentiment(payload: InputData):
     sentiment = predict(payload.text)
     return {"prediction": sentiment}
-
-#docker run -p 80:80 sentiment-detection-app
